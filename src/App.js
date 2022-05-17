@@ -1,23 +1,39 @@
-import AboutUs from './components/AboutUs';
-import ContactUs from './components/ContactUs';
-import Footer from './components/Footer';
-import Hero from './components/Hero';
-import Nav from './components/Nav';
-import Services from './components/Services';
-import Testimonials from './components/Testimonials';
- 
-function App() {
+import React from 'react';
+import {
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Link,
+  Flex,
+} from '@chakra-ui/react';
+
+const DrawerComponent = ({ isOpen, onClose, btnRef }) => {
   return (
-    <div>
-      <Nav />
-      <Hero />
-      <AboutUs />
-      <Services />
-      <Testimonials />
-      <ContactUs />
-      <Footer />
-    </div>
+    <Drawer
+      isOpen={isOpen}
+      placement="right"
+      onClose={onClose}
+      finalFocusRef={btnRef}
+      zIndex="popover"
+    >
+      <DrawerOverlay />
+
+      <DrawerContent>
+        <DrawerCloseButton />
+        <DrawerHeader>Chakra</DrawerHeader>
+
+        <DrawerBody>
+          <Flex flexDirection="column">
+            <Link mb="5">About</Link>
+            <Link>More Apps</Link>
+          </Flex>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
   );
-}
- 
-export default App 
+};
+
+export default DrawerComponent;
